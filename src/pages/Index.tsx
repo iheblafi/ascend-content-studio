@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { CheckCircle, ArrowRight, BarChart3, Users, Bot, Calendar, Shield, Zap } from "lucide-react";
+import { CheckCircle, ArrowRight, BarChart3, Users, Bot, Calendar, Shield, Zap, FileText, TrendingUp, Clock, Award } from "lucide-react";
 import { useState } from "react";
 import Header from "@/components/layout/Header";
 
@@ -90,28 +90,77 @@ const Index = () => {
     }
   ];
 
+  const stats = [
+    {
+      icon: FileText,
+      label: "Content Pieces Created",
+      value: "2.5M+",
+      color: "bg-blue-500"
+    },
+    {
+      icon: TrendingUp,
+      label: "Average ROI Increase",
+      value: "340%",
+      color: "bg-green-500"
+    },
+    {
+      icon: Clock,
+      label: "Time Saved Weekly",
+      value: "15hrs",
+      color: "bg-purple-500"
+    },
+    {
+      icon: Award,
+      label: "Customer Satisfaction",
+      value: "98%",
+      color: "bg-orange-500"
+    }
+  ];
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
-      {/* Use the Header component which has the working AuthModal */}
+    <div className="min-h-screen bg-gray-50">
       <Header />
 
-      {/* Hero Section */}
+      {/* Hero Section with Jobscan-style Interface */}
       <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto text-center">
-          <Badge className="mb-4 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 border-blue-200 dark:border-blue-800">
-            ✨ AI-Powered Content Platform
-          </Badge>
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-slate-900 via-blue-900 to-indigo-900 dark:from-white dark:via-blue-100 dark:to-indigo-100 bg-clip-text text-transparent leading-tight">
-            Transform Your Content
-            <br />
-            <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
-              With AI Intelligence
-            </span>
-          </h1>
-          <p className="text-xl md:text-2xl text-slate-600 dark:text-slate-300 mb-8 max-w-4xl mx-auto leading-relaxed">
-            Streamline your content creation workflow with AI-powered optimization, 
-            team collaboration tools, and analytics that drive real results.
-          </p>
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12">
+            <Badge className="mb-4 bg-blue-100 text-blue-800 border-blue-200">
+              ✨ AI-Powered Content Platform
+            </Badge>
+            <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-slate-900 via-blue-900 to-indigo-900 bg-clip-text text-transparent leading-tight">
+              Transform Your Content
+              <br />
+              <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+                With AI Intelligence
+              </span>
+            </h1>
+            <p className="text-xl md:text-2xl text-slate-600 mb-8 max-w-4xl mx-auto leading-relaxed">
+              Streamline your content creation workflow with AI-powered optimization, 
+              team collaboration tools, and analytics that drive real results.
+            </p>
+          </div>
+
+          {/* Stats Cards - Jobscan Style */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+            {stats.map((stat, index) => (
+              <Card key={index} className="bg-white border-0 shadow-lg hover:shadow-xl transition-all duration-300">
+                <CardContent className="p-6">
+                  <div className="flex items-center space-x-4">
+                    <div className={`w-12 h-12 ${stat.color} rounded-lg flex items-center justify-center`}>
+                      <stat.icon className="h-6 w-6 text-white" />
+                    </div>
+                    <div>
+                      <p className="text-2xl font-bold text-gray-900">{stat.value}</p>
+                      <p className="text-sm text-gray-600">{stat.label}</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          {/* Action Buttons */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
             <Button 
               size="lg" 
@@ -123,81 +172,174 @@ const Index = () => {
             <Button 
               variant="outline" 
               size="lg"
-              className="text-lg px-8 py-6 rounded-xl border-2 hover:bg-slate-50 dark:hover:bg-slate-800 transition-all duration-300"
+              className="text-lg px-8 py-6 rounded-xl border-2 hover:bg-slate-50 transition-all duration-300"
             >
               Watch Demo
             </Button>
           </div>
           
-          {/* Hero Image/Demo */}
-          <div className="relative max-w-5xl mx-auto">
-            <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-700 p-8">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <Card className="border-0 shadow-lg bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-950 dark:to-indigo-950">
-                  <CardHeader>
-                    <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-lg flex items-center justify-center mb-2">
-                      <Bot className="h-6 w-6 text-blue-600" />
-                    </div>
-                    <CardTitle className="text-lg">AI Analysis</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="space-y-2">
-                      <div className="h-2 bg-green-200 dark:bg-green-800 rounded-full"></div>
-                      <div className="h-2 bg-yellow-200 dark:bg-yellow-800 rounded-full w-3/4"></div>
-                      <div className="h-2 bg-red-200 dark:bg-red-800 rounded-full w-1/2"></div>
-                    </div>
-                  </CardContent>
-                </Card>
-                <Card className="border-0 shadow-lg bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-950 dark:to-emerald-950">
-                  <CardHeader>
-                    <div className="w-12 h-12 bg-green-100 dark:bg-green-900 rounded-lg flex items-center justify-center mb-2">
-                      <Users className="h-6 w-6 text-green-600" />
-                    </div>
-                    <CardTitle className="text-lg">Team Collaboration</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="flex -space-x-2">
-                      <div className="w-8 h-8 bg-blue-500 rounded-full border-2 border-white"></div>
-                      <div className="w-8 h-8 bg-green-500 rounded-full border-2 border-white"></div>
-                      <div className="w-8 h-8 bg-purple-500 rounded-full border-2 border-white"></div>
-                    </div>
-                  </CardContent>
-                </Card>
-                <Card className="border-0 shadow-lg bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-950 dark:to-pink-950">
-                  <CardHeader>
-                    <div className="w-12 h-12 bg-purple-100 dark:bg-purple-900 rounded-lg flex items-center justify-center mb-2">
-                      <BarChart3 className="h-6 w-6 text-purple-600" />
-                    </div>
-                    <CardTitle className="text-lg">Analytics</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="space-y-1">
-                      <div className="flex justify-between text-sm">
-                        <span>Engagement</span>
-                        <span className="text-green-600">+24%</span>
+          {/* Dashboard Preview - Jobscan Style Interface */}
+          <div className="relative max-w-6xl mx-auto">
+            <Card className="bg-white shadow-2xl border-0 rounded-2xl overflow-hidden">
+              <CardHeader className="bg-gradient-to-r from-slate-50 to-blue-50 border-b border-gray-200 p-6">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <CardTitle className="text-2xl text-gray-900">Content Dashboard</CardTitle>
+                    <CardDescription className="text-gray-600">
+                      AI-powered insights for your content strategy
+                    </CardDescription>
+                  </div>
+                  <Badge className="bg-green-100 text-green-800 border-green-200">Live Preview</Badge>
+                </div>
+              </CardHeader>
+              <CardContent className="p-8">
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
+                  {/* Content Score */}
+                  <Card className="border border-gray-200 shadow-sm">
+                    <CardHeader className="pb-3">
+                      <CardTitle className="text-lg flex items-center">
+                        <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center mr-3">
+                          <BarChart3 className="h-4 w-4 text-blue-600" />
+                        </div>
+                        Content Score
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="space-y-4">
+                        <div className="flex items-center justify-between">
+                          <span className="text-sm text-gray-600">SEO Optimization</span>
+                          <span className="text-sm font-medium text-green-600">94/100</span>
+                        </div>
+                        <div className="w-full bg-gray-200 rounded-full h-2">
+                          <div className="bg-green-500 h-2 rounded-full" style={{ width: '94%' }}></div>
+                        </div>
+                        <div className="flex items-center justify-between">
+                          <span className="text-sm text-gray-600">Readability</span>
+                          <span className="text-sm font-medium text-blue-600">87/100</span>
+                        </div>
+                        <div className="w-full bg-gray-200 rounded-full h-2">
+                          <div className="bg-blue-500 h-2 rounded-full" style={{ width: '87%' }}></div>
+                        </div>
+                        <div className="flex items-center justify-between">
+                          <span className="text-sm text-gray-600">Engagement</span>
+                          <span className="text-sm font-medium text-orange-600">76/100</span>
+                        </div>
+                        <div className="w-full bg-gray-200 rounded-full h-2">
+                          <div className="bg-orange-500 h-2 rounded-full" style={{ width: '76%' }}></div>
+                        </div>
                       </div>
-                      <div className="flex justify-between text-sm">
-                        <span>SEO Score</span>
-                        <span className="text-blue-600">94/100</span>
+                    </CardContent>
+                  </Card>
+
+                  {/* AI Suggestions */}
+                  <Card className="border border-gray-200 shadow-sm">
+                    <CardHeader className="pb-3">
+                      <CardTitle className="text-lg flex items-center">
+                        <div className="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center mr-3">
+                          <Bot className="h-4 w-4 text-purple-600" />
+                        </div>
+                        AI Suggestions
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="space-y-3">
+                        <div className="flex items-start space-x-3">
+                          <div className="w-2 h-2 bg-green-500 rounded-full mt-2"></div>
+                          <div>
+                            <p className="text-sm font-medium text-gray-900">Add meta description</p>
+                            <p className="text-xs text-gray-600">Boost SEO score by 8 points</p>
+                          </div>
+                        </div>
+                        <div className="flex items-start space-x-3">
+                          <div className="w-2 h-2 bg-blue-500 rounded-full mt-2"></div>
+                          <div>
+                            <p className="text-sm font-medium text-gray-900">Optimize heading structure</p>
+                            <p className="text-xs text-gray-600">Improve readability</p>
+                          </div>
+                        </div>
+                        <div className="flex items-start space-x-3">
+                          <div className="w-2 h-2 bg-orange-500 rounded-full mt-2"></div>
+                          <div>
+                            <p className="text-sm font-medium text-gray-900">Add call-to-action</p>
+                            <p className="text-xs text-gray-600">Increase engagement by 15%</p>
+                          </div>
+                        </div>
                       </div>
+                    </CardContent>
+                  </Card>
+
+                  {/* Performance Metrics */}
+                  <Card className="border border-gray-200 shadow-sm">
+                    <CardHeader className="pb-3">
+                      <CardTitle className="text-lg flex items-center">
+                        <div className="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center mr-3">
+                          <TrendingUp className="h-4 w-4 text-green-600" />
+                        </div>
+                        Performance
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="space-y-4">
+                        <div className="flex items-center justify-between">
+                          <span className="text-sm text-gray-600">Views this month</span>
+                          <span className="text-sm font-medium text-gray-900">12.4k</span>
+                        </div>
+                        <div className="flex items-center justify-between">
+                          <span className="text-sm text-gray-600">Engagement rate</span>
+                          <span className="text-sm font-medium text-green-600">+24%</span>
+                        </div>
+                        <div className="flex items-center justify-between">
+                          <span className="text-sm text-gray-600">Time on page</span>
+                          <span className="text-sm font-medium text-blue-600">3m 42s</span>
+                        </div>
+                        <div className="flex items-center justify-between">
+                          <span className="text-sm text-gray-600">Bounce rate</span>
+                          <span className="text-sm font-medium text-orange-600">-18%</span>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </div>
+
+                {/* Quick Actions */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <Button className="h-16 bg-blue-600 hover:bg-blue-700 text-white justify-start">
+                    <FileText className="h-5 w-5 mr-3" />
+                    <div className="text-left">
+                      <div className="font-medium">Create Content</div>
+                      <div className="text-xs opacity-90">Start with AI assistance</div>
                     </div>
-                  </CardContent>
-                </Card>
-              </div>
-            </div>
+                  </Button>
+                  <Button variant="outline" className="h-16 justify-start">
+                    <BarChart3 className="h-5 w-5 mr-3" />
+                    <div className="text-left">
+                      <div className="font-medium">View Analytics</div>
+                      <div className="text-xs text-gray-600">Track performance</div>
+                    </div>
+                  </Button>
+                  <Button variant="outline" className="h-16 justify-start">
+                    <Users className="h-5 w-5 mr-3" />
+                    <div className="text-left">
+                      <div className="font-medium">Team Workspace</div>
+                      <div className="text-xs text-gray-600">Collaborate in real-time</div>
+                    </div>
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>
 
       {/* Features Section */}
-      <section id="features" className="py-20 px-4 sm:px-6 lg:px-8 bg-white dark:bg-slate-900">
+      <section id="features" className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-slate-900 dark:text-white">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-slate-900">
               Powerful Features for
               <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent"> Modern Teams</span>
             </h2>
-            <p className="text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto">
+            <p className="text-xl text-slate-600 max-w-3xl mx-auto">
               Everything you need to create, optimize, and manage content that drives results
             </p>
           </div>
@@ -206,7 +348,7 @@ const Index = () => {
               <Card 
                 key={index}
                 className={`border-0 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 cursor-pointer ${
-                  isHovered === feature.title ? 'bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-950 dark:to-indigo-950' : ''
+                  isHovered === feature.title ? 'bg-gradient-to-br from-blue-50 to-indigo-50' : ''
                 }`}
                 onMouseEnter={() => setIsHovered(feature.title)}
                 onMouseLeave={() => setIsHovered(null)}
@@ -225,14 +367,14 @@ const Index = () => {
       </section>
 
       {/* Pricing Section */}
-      <section id="pricing" className="py-20 px-4 sm:px-6 lg:px-8 bg-slate-50 dark:bg-slate-800">
+      <section id="pricing" className="py-20 px-4 sm:px-6 lg:px-8 bg-slate-50">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-slate-900 dark:text-white">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-slate-900">
               Simple, Transparent
               <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent"> Pricing</span>
             </h2>
-            <p className="text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto">
+            <p className="text-xl text-slate-600 max-w-3xl mx-auto">
               Choose the plan that fits your needs. Upgrade or downgrade at any time.
             </p>
           </div>
@@ -242,8 +384,8 @@ const Index = () => {
                 key={index}
                 className={`border-2 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 relative ${
                   plan.popular 
-                    ? 'border-blue-500 bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-950 dark:to-indigo-950' 
-                    : 'border-slate-200 dark:border-slate-700'
+                    ? 'border-blue-500 bg-gradient-to-br from-blue-50 to-indigo-50' 
+                    : 'border-slate-200'
                 }`}
               >
                 {plan.popular && (
@@ -255,7 +397,7 @@ const Index = () => {
                   <CardTitle className="text-2xl mb-2">{plan.name}</CardTitle>
                   <div className="mb-2">
                     <span className="text-4xl font-bold">{plan.price}</span>
-                    <span className="text-slate-600 dark:text-slate-300">{plan.period}</span>
+                    <span className="text-slate-600">{plan.period}</span>
                   </div>
                   <CardDescription className="text-base">{plan.description}</CardDescription>
                 </CardHeader>
@@ -264,7 +406,7 @@ const Index = () => {
                     {plan.features.map((feature, featureIndex) => (
                       <li key={featureIndex} className="flex items-center">
                         <CheckCircle className="h-5 w-5 text-green-500 mr-3 flex-shrink-0" />
-                        <span className="text-slate-600 dark:text-slate-300">{feature}</span>
+                        <span className="text-slate-600">{feature}</span>
                       </li>
                     ))}
                   </ul>

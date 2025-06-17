@@ -1,7 +1,7 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { BarChart3, FileText, TrendingUp, Users, Zap, Crown } from 'lucide-react';
+import { BarChart3, FileText, TrendingUp, Users, Zap, Crown, Star } from 'lucide-react';
 
 interface DashboardStatsProps {
   subscription: any;
@@ -44,100 +44,107 @@ const DashboardStats = ({ subscription }: DashboardStatsProps) => {
   const getPlanIcon = () => {
     switch (plan) {
       case 'enterprise':
-        return <Crown className="h-4 w-4 text-yellow-500" />;
+        return <Crown className="h-4 w-4 text-yellow-600" />;
       case 'pro':
-        return <Zap className="h-4 w-4 text-blue-500" />;
+        return <Star className="h-4 w-4 text-blue-600" />;
       default:
-        return <FileText className="h-4 w-4 text-slate-500" />;
+        return <FileText className="h-4 w-4 text-gray-500" />;
     }
   };
 
-  const getPlanColor = () => {
+  const getPlanBadgeStyle = () => {
     switch (plan) {
       case 'enterprise':
-        return 'bg-gradient-to-r from-yellow-500 to-orange-500';
+        return 'bg-yellow-100 text-yellow-800 border-yellow-200';
       case 'pro':
-        return 'bg-gradient-to-r from-blue-500 to-indigo-500';
+        return 'bg-blue-100 text-blue-800 border-blue-200';
       default:
-        return 'bg-gradient-to-r from-slate-500 to-slate-600';
+        return 'bg-gray-100 text-gray-800 border-gray-200';
     }
   };
 
   return (
     <div className="space-y-6">
-      {/* Plan Status Card */}
-      <Card className="relative overflow-hidden">
-        <div className={`absolute inset-0 ${getPlanColor()} opacity-5`} />
-        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-          <CardTitle className="text-lg font-medium">Current Plan</CardTitle>
+      {/* Plan Status Card - Jobscan Style */}
+      <Card className="bg-white border border-gray-200">
+        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2 border-b border-gray-100">
+          <CardTitle className="text-lg font-semibold text-gray-900">Current Plan</CardTitle>
           {getPlanIcon()}
         </CardHeader>
-        <CardContent>
-          <div className="flex items-center space-x-2">
-            <Badge variant={plan === 'free' ? 'secondary' : 'default'} className={plan !== 'free' ? getPlanColor() + ' text-white' : ''}>
+        <CardContent className="pt-4">
+          <div className="flex items-center space-x-3 mb-3">
+            <Badge className={`${getPlanBadgeStyle()} border`}>
               {plan.charAt(0).toUpperCase() + plan.slice(1)}
             </Badge>
             {plan === 'free' && (
-              <span className="text-sm text-slate-600">• Upgrade for more features</span>
+              <span className="text-sm text-gray-600">• Upgrade for more features</span>
             )}
           </div>
-          <div className="mt-2">
-            <p className="text-xs text-slate-600">
-              Features: {stats.features.join(', ')}
+          <div>
+            <p className="text-sm text-gray-600">
+              <strong>Features:</strong> {stats.features.join(', ')}
             </p>
           </div>
         </CardContent>
       </Card>
 
-      {/* Stats Grid */}
+      {/* Stats Grid - Jobscan Style */}
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-        <Card>
+        <Card className="bg-white border border-gray-200 hover:shadow-md transition-shadow">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Total Content</CardTitle>
-            <FileText className="h-4 w-4 text-slate-600" />
+            <CardTitle className="text-sm font-medium text-gray-700">Total Content</CardTitle>
+            <div className="p-2 bg-blue-100 rounded-lg">
+              <FileText className="h-4 w-4 text-blue-600" />
+            </div>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{stats.contentCount}</div>
-            <p className="text-xs text-slate-600">
+            <div className="text-2xl font-bold text-gray-900">{stats.contentCount}</div>
+            <p className="text-xs text-gray-600 mt-1">
               {plan === 'free' ? 'Limit: 10 pieces' : 'Unlimited'}
             </p>
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="bg-white border border-gray-200 hover:shadow-md transition-shadow">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">AI Score</CardTitle>
-            <BarChart3 className="h-4 w-4 text-slate-600" />
+            <CardTitle className="text-sm font-medium text-gray-700">AI Score</CardTitle>
+            <div className="p-2 bg-green-100 rounded-lg">
+              <BarChart3 className="h-4 w-4 text-green-600" />
+            </div>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{stats.optimizationScore}%</div>
-            <p className="text-xs text-slate-600">
+            <div className="text-2xl font-bold text-gray-900">{stats.optimizationScore}%</div>
+            <p className="text-xs text-gray-600 mt-1">
               Average optimization
             </p>
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="bg-white border border-gray-200 hover:shadow-md transition-shadow">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Monthly Views</CardTitle>
-            <TrendingUp className="h-4 w-4 text-slate-600" />
+            <CardTitle className="text-sm font-medium text-gray-700">Monthly Views</CardTitle>
+            <div className="p-2 bg-purple-100 rounded-lg">
+              <TrendingUp className="h-4 w-4 text-purple-600" />
+            </div>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{stats.monthlyViews.toLocaleString()}</div>
-            <p className="text-xs text-slate-600">
+            <div className="text-2xl font-bold text-gray-900">{stats.monthlyViews.toLocaleString()}</div>
+            <p className="text-xs text-gray-600 mt-1">
               +12.5% from last month
             </p>
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="bg-white border border-gray-200 hover:shadow-md transition-shadow">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Team Members</CardTitle>
-            <Users className="h-4 w-4 text-slate-600" />
+            <CardTitle className="text-sm font-medium text-gray-700">Team Members</CardTitle>
+            <div className="p-2 bg-orange-100 rounded-lg">
+              <Users className="h-4 w-4 text-orange-600" />
+            </div>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{stats.teamMembers}</div>
-            <p className="text-xs text-slate-600">
+            <div className="text-2xl font-bold text-gray-900">{stats.teamMembers}</div>
+            <p className="text-xs text-gray-600 mt-1">
               {plan === 'free' ? 'Solo plan' : 'Collaborative team'}
             </p>
           </CardContent>

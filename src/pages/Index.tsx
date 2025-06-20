@@ -2,7 +2,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { CheckCircle, ArrowRight, Upload, FileText, BarChart3, Users, Bot, Shield, Zap, Star, TrendingUp } from "lucide-react";
+import { CheckCircle, ArrowRight, Upload, FileText, BarChart3, Users, Bot, Shield, Zap, Star, TrendingUp, Target, Settings, Eye } from "lucide-react";
 import { useState } from "react";
 import Header from "@/components/layout/Header";
 
@@ -82,6 +82,34 @@ const Index = () => {
               <div className="flex items-center">
                 <CheckCircle className="h-4 w-4 text-green-500 mr-2" />
                 No signup required
+              </div>
+            </div>
+          </div>
+
+          {/* Numbered Steps - Jobscan Style */}
+          <div className="max-w-5xl mx-auto mb-12">
+            <div className="flex items-center justify-center mb-8">
+              <div className="flex items-center space-x-8">
+                <div className="flex items-center">
+                  <div className="w-12 h-12 bg-blue-500 text-white rounded-full flex items-center justify-center text-xl font-bold mr-4">
+                    1
+                  </div>
+                  <span className="text-gray-700 font-medium">Upload Content</span>
+                </div>
+                <div className="w-16 h-0.5 bg-gray-300"></div>
+                <div className="flex items-center">
+                  <div className="w-12 h-12 bg-gray-300 text-gray-600 rounded-full flex items-center justify-center text-xl font-bold mr-4">
+                    2
+                  </div>
+                  <span className="text-gray-500 font-medium">Add Target</span>
+                </div>
+                <div className="w-16 h-0.5 bg-gray-300"></div>
+                <div className="flex items-center">
+                  <div className="w-12 h-12 bg-gray-300 text-gray-600 rounded-full flex items-center justify-center text-xl font-bold mr-4">
+                    3
+                  </div>
+                  <span className="text-gray-500 font-medium">View Results</span>
+                </div>
               </div>
             </div>
           </div>
@@ -196,6 +224,102 @@ const Index = () => {
             <div className="text-center">
               <div className="text-3xl font-bold text-purple-600 mb-2">15hrs</div>
               <div className="text-gray-600">Average Time Saved Weekly</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Information Interface Section - Jobscan Style */}
+      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-blue-50">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            {/* Left side - Illustration/Visual */}
+            <div className="relative">
+              <div className="bg-white rounded-2xl shadow-xl p-8 max-w-md mx-auto lg:mx-0">
+                {/* Mock Interface */}
+                <div className="flex items-center justify-between mb-6">
+                  <div className="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center">
+                    <Settings className="h-6 w-6 text-white" />
+                  </div>
+                  <Badge className="bg-blue-100 text-blue-800">SCORE</Badge>
+                </div>
+                
+                {/* Score Circle */}
+                <div className="flex items-center justify-center mb-6">
+                  <div className="relative w-24 h-24">
+                    <svg className="w-24 h-24 transform -rotate-90" viewBox="0 0 100 100">
+                      <circle cx="50" cy="50" r="40" stroke="#e5e7eb" strokeWidth="8" fill="none" />
+                      <circle 
+                        cx="50" 
+                        cy="50" 
+                        r="40" 
+                        stroke="#10b981" 
+                        strokeWidth="8" 
+                        fill="none"
+                        strokeDasharray="251.2"
+                        strokeDashoffset="62.8"
+                        className="transition-all duration-1000"
+                      />
+                    </svg>
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <span className="text-2xl font-bold text-green-600">87%</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Progress Bars */}
+                <div className="space-y-3">
+                  <div className="flex items-center space-x-3">
+                    <div className="flex-1 bg-gray-200 rounded-full h-2">
+                      <div className="bg-blue-500 h-2 rounded-full" style={{ width: '85%' }}></div>
+                    </div>
+                    <CheckCircle className="h-5 w-5 text-blue-500" />
+                  </div>
+                  <div className="flex items-center space-x-3">
+                    <div className="flex-1 bg-gray-200 rounded-full h-2">
+                      <div className="bg-blue-500 h-2 rounded-full" style={{ width: '92%' }}></div>
+                    </div>
+                    <CheckCircle className="h-5 w-5 text-blue-500" />
+                  </div>
+                  <div className="flex items-center space-x-3">
+                    <div className="flex-1 bg-gray-200 rounded-full h-2">
+                      <div className="bg-blue-500 h-2 rounded-full" style={{ width: '78%' }}></div>
+                    </div>
+                    <div className="w-5 h-5 border-2 border-gray-300 rounded-full"></div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Decorative hand illustration */}
+              <div className="absolute -bottom-4 -left-8 w-20 h-20 bg-orange-200 rounded-full opacity-80 hidden lg:block"></div>
+            </div>
+
+            {/* Right side - Content */}
+            <div>
+              <div className="mb-4">
+                <Badge className="bg-blue-100 text-blue-800 mb-4">CONTENT OPTIMIZATION</Badge>
+                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                  Show that you're the perfect match
+                </h2>
+              </div>
+              
+              <p className="text-lg text-gray-600 mb-8 leading-relaxed">
+                Is your content a good match for what your audience is looking for? If it's not, you 
+                might miss out on engagement for topics you feel qualified to cover. ContentAI Pro's 
+                proprietary AI analyzes your content and compares it to your target audience using AI 
+                technology. Use your match rate report to see how to optimize your content to 
+                get more engagement.
+              </p>
+
+              <div className="flex items-center space-x-4">
+                <Button size="lg" className="bg-blue-600 hover:bg-blue-700">
+                  Try It Free
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+                <Button variant="outline" size="lg">
+                  Learn More
+                </Button>
+              </div>
             </div>
           </div>
         </div>

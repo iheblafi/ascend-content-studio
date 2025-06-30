@@ -1,5 +1,4 @@
-
-import { useAuth } from '@/hooks/useAuth';
+import { useAuth } from '@/contexts/AuthContext';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import DashboardLayout from '@/components/dashboard/DashboardLayout';
@@ -10,7 +9,7 @@ import RecentContentCard from '@/components/dashboard/RecentContentCard';
 import PlanUsageCard from '@/components/dashboard/PlanUsageCard';
 
 const Dashboard = () => {
-  const { user, profile, subscription, loading } = useAuth();
+  const { user, profile, loading } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -34,7 +33,7 @@ const Dashboard = () => {
     return null;
   }
 
-  const plan = subscription?.plan || 'free';
+  const plan = profile?.subscription_plan || 'free';
   const userName = profile?.full_name || user.email?.split('@')[0] || 'User';
 
   return (
@@ -44,7 +43,7 @@ const Dashboard = () => {
         <WelcomeHeader userName={userName} />
 
         {/* Stats Overview */}
-        <DashboardStats subscription={subscription} />
+        <DashboardStats subscription={{ plan: plan }} />
 
         {/* Main Action Cards */}
         <DashboardActionCards />

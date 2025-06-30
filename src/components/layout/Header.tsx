@@ -1,10 +1,9 @@
-
 import { Button } from "@/components/ui/button";
 import { Bot, Menu, X, User, LogOut } from "lucide-react";
 import { useState } from "react";
-import { useAuth } from "@/hooks/useAuth";
+import { useAuth } from "@/contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
-import AuthModal from "@/components/auth/AuthModal";
+import { AuthDialog } from "@/components/auth/AuthDialog";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -13,16 +12,38 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { toast } from "sonner";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
+  const [authDialogTab, setAuthDialogTab] = useState<'signin' | 'signup'>('signin');
   const { user, profile, signOut } = useAuth();
   const navigate = useNavigate();
 
   const handleSignOut = async () => {
-    await signOut();
-    navigate('/');
+    try {
+      const { error } = await signOut();
+      if (error) {
+        toast.error('Error signing out: ' + error.message);
+      } else {
+        toast.success('Signed out successfully');
+        navigate('/');
+      }
+    } catch (error) {
+      toast.error('Unexpected error during sign out');
+      console.error('Sign out error:', error);
+    }
+  };
+
+  const openSignIn = () => {
+    setAuthDialogTab('signin');
+    setIsAuthModalOpen(true);
+  };
+
+  const openSignUp = () => {
+    setAuthDialogTab('signup');
+    setIsAuthModalOpen(true);
   };
 
   const getUserInitials = () => {
@@ -106,14 +127,14 @@ const Header = () => {
                   <Button 
                     variant="outline" 
                     size="sm"
-                    onClick={() => setIsAuthModalOpen(true)}
+                    onClick={openSignIn}
                   >
                     Login
                   </Button>
                   <Button 
                     size="sm" 
                     className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700"
-                    onClick={() => setIsAuthModalOpen(true)}
+                    onClick={openSignUp}
                   >
                     Start Free Trial
                   </Button>
@@ -169,14 +190,14 @@ const Header = () => {
                       <Button 
                         variant="outline" 
                         size="sm"
-                        onClick={() => setIsAuthModalOpen(true)}
+                        onClick={openSignIn}
                       >
                         Login
                       </Button>
                       <Button 
                         size="sm" 
                         className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700"
-                        onClick={() => setIsAuthModalOpen(true)}
+                        onClick={openSignUp}
                       >
                         Start Free Trial
                       </Button>
@@ -189,9 +210,10 @@ const Header = () => {
         </div>
       </nav>
       
-      <AuthModal 
+      <AuthDialog 
         open={isAuthModalOpen} 
-        onOpenChange={setIsAuthModalOpen} 
+        onOpenChange={setIsAuthModalOpen}
+        defaultTab={authDialogTab}
       />
     </>
   );

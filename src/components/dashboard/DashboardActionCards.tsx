@@ -2,8 +2,10 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Plus, Sparkles, BarChart3 } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const DashboardActionCards = () => {
+  const navigate = useNavigate();
   return (
     <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
       <Card className="bg-white border border-gray-200 hover:shadow-md transition-shadow">
@@ -21,7 +23,10 @@ const DashboardActionCards = () => {
           </div>
         </CardHeader>
         <CardContent>
-          <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white">
+          <Button 
+            className="w-full bg-blue-600 hover:bg-blue-700 text-white"
+            onClick={() => navigate('/analyze')}
+          >
             Get Started
           </Button>
         </CardContent>

@@ -1,13 +1,16 @@
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { CheckCircle, ArrowRight, Upload, FileText, BarChart3, Users, Bot, Shield, Zap, Star, TrendingUp } from "lucide-react";
+import { CheckCircle, ArrowRight, Upload, FileText, BarChart3, Users, Bot, Shield, Zap, Star, TrendingUp, Target, Settings, Eye } from "lucide-react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Header from "@/components/layout/Header";
+import LearnMoreCard from "@/components/LearnMoreCard";
 
 const Index = () => {
   const [activeTab, setActiveTab] = useState("resume");
+  const navigate = useNavigate();
+  const [showLearnMore, setShowLearnMore] = useState(false);
 
   const features = [
     {
@@ -86,6 +89,34 @@ const Index = () => {
             </div>
           </div>
 
+          {/* Numbered Steps - Jobscan Style */}
+          <div className="max-w-5xl mx-auto mb-12">
+            <div className="flex items-center justify-center mb-8">
+              <div className="flex items-center space-x-8">
+                <div className="flex items-center">
+                  <div className="w-12 h-12 bg-blue-500 text-white rounded-full flex items-center justify-center text-xl font-bold mr-4">
+                    1
+                  </div>
+                  <span className="text-gray-700 font-medium">Upload Content</span>
+                </div>
+                <div className="w-16 h-0.5 bg-gray-300"></div>
+                <div className="flex items-center">
+                  <div className="w-12 h-12 bg-gray-300 text-gray-600 rounded-full flex items-center justify-center text-xl font-bold mr-4">
+                    2
+                  </div>
+                  <span className="text-gray-500 font-medium">Add Target</span>
+                </div>
+                <div className="w-16 h-0.5 bg-gray-300"></div>
+                <div className="flex items-center">
+                  <div className="w-12 h-12 bg-gray-300 text-gray-600 rounded-full flex items-center justify-center text-xl font-bold mr-4">
+                    3
+                  </div>
+                  <span className="text-gray-500 font-medium">View Results</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
           {/* Main Tool Interface - Jobscan Style */}
           <div className="max-w-4xl mx-auto">
             <Card className="bg-white shadow-lg border-0 rounded-xl overflow-hidden">
@@ -132,53 +163,108 @@ const Index = () => {
 
                 {/* Upload Areas */}
                 <div className="p-8">
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                    {/* Left Upload Area */}
-                    <div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-4">
-                        Upload Your Content
-                      </h3>
-                      <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center hover:border-blue-400 transition-colors cursor-pointer">
-                        <Upload className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-                        <p className="text-gray-600 mb-2">
-                          Drop your file here or click to browse
-                        </p>
-                        <p className="text-sm text-gray-500">
-                          Supports: PDF, DOC, DOCX, TXT (Max 5MB)
-                        </p>
-                        <Button className="mt-4 bg-blue-600 hover:bg-blue-700">
-                          Choose File
-                        </Button>
-                      </div>
-                    </div>
+  {activeTab === "resume" && (
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      {/* Upload Content */}
+      <div>
+        <h3 className="text-lg font-semibold text-gray-900 mb-4">
+          Upload Your Content
+        </h3>
+        <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center hover:border-blue-400 transition-colors cursor-pointer">
+          <Upload className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+          <p className="text-gray-600 mb-2">
+            Drop your file here or click to browse
+          </p>
+          <p className="text-sm text-gray-500">
+            Supports: PDF, DOC, DOCX, TXT (Max 5MB)
+          </p>
+          <Button 
+            className="mt-4 bg-blue-600 hover:bg-blue-700"
+            onClick={() => navigate('/analyze')}
+          >
+            Choose File
+          </Button>
+        </div>
+      </div>
 
-                    {/* Right Upload Area */}
-                    <div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-4">
-                        Target Keywords/Topic
-                      </h3>
-                      <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center hover:border-blue-400 transition-colors">
-                        <FileText className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-                        <p className="text-gray-600 mb-4">
-                          Enter your target keywords or topic focus
-                        </p>
-                        <textarea
-                          className="w-full p-3 border border-gray-300 rounded-md resize-none"
-                          rows={4}
-                          placeholder="Enter target keywords, topic, or paste content guidelines here..."
-                        />
-                      </div>
-                    </div>
-                  </div>
+      {/* Target Area */}
+      <div>
+        <h3 className="text-lg font-semibold text-gray-900 mb-4">
+          Target Keywords/Topic
+        </h3>
+        <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center hover:border-blue-400 transition-colors">
+          <FileText className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+          <p className="text-gray-600 mb-4">
+            Enter your target keywords or topic focus
+          </p>
+          <textarea
+            className="w-full p-3 border border-gray-300 rounded-md resize-none"
+            rows={4}
+            placeholder="Enter target keywords, topic, or paste content guidelines here..."
+          />
+        </div>
+      </div>
+    </div>
+  )}
 
-                  {/* Action Button */}
-                  <div className="mt-8 text-center">
-                    <Button size="lg" className="bg-green-600 hover:bg-green-700 text-white px-12 py-4 text-lg rounded-lg shadow-lg">
-                      Analyze Content
-                      <ArrowRight className="ml-2 h-5 w-5" />
-                    </Button>
-                  </div>
-                </div>
+  {activeTab === "job" && (
+    <div className="space-y-6">
+      <h3 className="text-lg font-semibold text-gray-900">
+        Performance Metrics Summary
+      </h3>
+      <ul className="space-y-4">
+        <li className="flex justify-between items-center">
+          <span className="text-gray-700">Readability Score</span>
+          <div className="w-2/3 bg-gray-100 rounded-full h-3">
+            <div className="bg-blue-500 h-3 rounded-full w-[80%]"></div>
+          </div>
+          <span className="ml-2 text-blue-600 font-medium">80%</span>
+        </li>
+        <li className="flex justify-between items-center">
+          <span className="text-gray-700">SEO Optimization</span>
+          <div className="w-2/3 bg-gray-100 rounded-full h-3">
+            <div className="bg-green-500 h-3 rounded-full w-[92%]"></div>
+          </div>
+          <span className="ml-2 text-green-600 font-medium">92%</span>
+        </li>
+        <li className="flex justify-between items-center">
+          <span className="text-gray-700">Tone Appropriateness</span>
+          <div className="w-2/3 bg-gray-100 rounded-full h-3">
+            <div className="bg-purple-500 h-3 rounded-full w-[70%]"></div>
+          </div>
+          <span className="ml-2 text-purple-600 font-medium">70%</span>
+        </li>
+        <li className="flex justify-between items-center">
+          <span className="text-gray-700">Engagement Score</span>
+          <div className="w-2/3 bg-gray-100 rounded-full h-3">
+            <div className="bg-yellow-500 h-3 rounded-full w-[65%]"></div>
+          </div>
+          <span className="ml-2 text-yellow-600 font-medium">65%</span>
+        </li>
+        <li className="flex justify-between items-center">
+          <span className="text-gray-700">Keyword Density</span>
+          <div className="w-2/3 bg-gray-100 rounded-full h-3">
+            <div className="bg-red-500 h-3 rounded-full w-[78%]"></div>
+          </div>
+          <span className="ml-2 text-red-600 font-medium">78%</span>
+        </li>
+      </ul>
+    </div>
+  )}
+
+  {/* Common Analyze Button */}
+  <div className="mt-8 text-center">
+    <Button 
+      size="lg" 
+      className="bg-green-600 hover:bg-green-700 text-white px-12 py-4 text-lg rounded-lg shadow-lg"
+      onClick={() => navigate('/analyze')}
+    >
+      Analyze Content
+      <ArrowRight className="ml-2 h-5 w-5" />
+    </Button>
+  </div>
+</div>
+
               </CardContent>
             </Card>
           </div>
@@ -198,6 +284,109 @@ const Index = () => {
               <div className="text-gray-600">Average Time Saved Weekly</div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Information Interface Section - Jobscan Style */}
+      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-blue-50">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="relative">
+              <div className="bg-white rounded-2xl shadow-xl p-8 max-w-md mx-auto lg:mx-0">
+                <div className="flex items-center justify-between mb-6">
+                  <div className="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center">
+                    <Settings className="h-6 w-6 text-white" />
+                  </div>
+                  <Badge className="bg-blue-100 text-blue-800">SCORE</Badge>
+                </div>
+
+                <div className="flex items-center justify-center mb-6">
+                  <div className="relative w-24 h-24">
+                    <svg className="w-24 h-24 transform -rotate-90" viewBox="0 0 100 100">
+                      <circle cx="50" cy="50" r="40" stroke="#e5e7eb" strokeWidth="8" fill="none" />
+                      <circle 
+                        cx="50" 
+                        cy="50" 
+                        r="40" 
+                        stroke="#10b981" 
+                        strokeWidth="8" 
+                        fill="none"
+                        strokeDasharray="251.2"
+                        strokeDashoffset="62.8"
+                        className="transition-all duration-1000"
+                      />
+                    </svg>
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <span className="text-2xl font-bold text-green-600">87%</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="space-y-3">
+                  <div className="flex items-center space-x-3">
+                    <div className="flex-1 bg-gray-200 rounded-full h-2">
+                      <div className="bg-blue-500 h-2 rounded-full" style={{ width: '85%' }}></div>
+                    </div>
+                    <CheckCircle className="h-5 w-5 text-blue-500" />
+                  </div>
+                  <div className="flex items-center space-x-3">
+                    <div className="flex-1 bg-gray-200 rounded-full h-2">
+                      <div className="bg-blue-500 h-2 rounded-full" style={{ width: '92%' }}></div>
+                    </div>
+                    <CheckCircle className="h-5 w-5 text-blue-500" />
+                  </div>
+                  <div className="flex items-center space-x-3">
+                    <div className="flex-1 bg-gray-200 rounded-full h-2">
+                      <div className="bg-blue-500 h-2 rounded-full" style={{ width: '78%' }}></div>
+                    </div>
+                    <div className="w-5 h-5 border-2 border-gray-300 rounded-full"></div>
+                  </div>
+                </div>
+              </div>
+              <div className="absolute -bottom-4 -left-8 w-20 h-20 bg-orange-200 rounded-full opacity-80 hidden lg:block"></div>
+            </div>
+
+            <div>
+              <div className="mb-4">
+                <Badge className="bg-blue-100 text-blue-800 mb-4">CONTENT OPTIMIZATION</Badge>
+                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                  Show that you're the perfect match
+                </h2>
+              </div>
+              
+              <p className="text-lg text-gray-600 mb-8 leading-relaxed "  style={{ textAlign: 'justify' }}>
+                Is your content a good match for what your audience is looking for? If it's not, you 
+                might miss out on engagement for topics you feel qualified to cover. ContentAI Pro's 
+                proprietary AI analyzes your content and compares it to your target audience using AI 
+                technology. Use your match rate report to see how to optimize your content to 
+                get more engagement.
+              </p>
+
+              <div className="flex items-center space-x-4">
+                <Button 
+                  size="lg" 
+                  className="bg-blue-600 hover:bg-blue-700"
+                  onClick={() => navigate('/analyze')}
+                >
+                  Try It Free
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+                <Button 
+                  variant="outline" 
+                  size="lg" 
+                  onClick={() => setShowLearnMore(!showLearnMore)}
+                >
+                  {showLearnMore ? 'Less' : 'Learn More'}
+                </Button>
+              </div>
+            </div>
+          </div>
+
+          {showLearnMore && (
+            <section className="py-16 px-8 sm:px-16 lg:px-16 ">
+              <LearnMoreCard />
+            </section>
+          )}
         </div>
       </section>
 
@@ -318,7 +507,11 @@ const Index = () => {
             Join thousands of content creators who use ContentAI Pro to boost their results
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Button size="lg" className="bg-white text-blue-600 hover:bg-gray-100 px-8 py-4 text-lg">
+            <Button 
+              size="lg" 
+              className="bg-white text-blue-600 hover:bg-gray-100 px-8 py-4 text-lg"
+              onClick={() => navigate('/analyze')}
+            >
               Start Free Analysis
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>

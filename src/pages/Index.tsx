@@ -2,7 +2,6 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { CheckCircle, ArrowRight, Upload, FileText, BarChart3, Users, Bot, Shield, Zap, Star, TrendingUp, Target, Settings, Eye } from "lucide-react";
-import { CheckCircle, ArrowRight, Upload, FileText, BarChart3, Users, Bot, Shield, Zap, Star, TrendingUp, Target, Settings, Eye } from "lucide-react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "@/components/layout/Header";

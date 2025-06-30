@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { CheckCircle, ArrowRight, Upload, FileText, BarChart3, Users, Bot, Shield, Zap, Star, TrendingUp, Target, Settings, Eye } from "lucide-react";
+import { CheckCircle, ArrowRight, Upload, FileText, BarChart3, Users, Bot, Shield, Zap, Star, TrendingUp, Target, Settings, Eye } from "lucide-react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "@/components/layout/Header";
@@ -85,6 +86,34 @@ const Index = () => {
               <div className="flex items-center">
                 <CheckCircle className="h-4 w-4 text-green-500 mr-2" />
                 No signup required
+              </div>
+            </div>
+          </div>
+
+          {/* Numbered Steps - Jobscan Style */}
+          <div className="max-w-5xl mx-auto mb-12">
+            <div className="flex items-center justify-center mb-8">
+              <div className="flex items-center space-x-8">
+                <div className="flex items-center">
+                  <div className="w-12 h-12 bg-blue-500 text-white rounded-full flex items-center justify-center text-xl font-bold mr-4">
+                    1
+                  </div>
+                  <span className="text-gray-700 font-medium">Upload Content</span>
+                </div>
+                <div className="w-16 h-0.5 bg-gray-300"></div>
+                <div className="flex items-center">
+                  <div className="w-12 h-12 bg-gray-300 text-gray-600 rounded-full flex items-center justify-center text-xl font-bold mr-4">
+                    2
+                  </div>
+                  <span className="text-gray-500 font-medium">Add Target</span>
+                </div>
+                <div className="w-16 h-0.5 bg-gray-300"></div>
+                <div className="flex items-center">
+                  <div className="w-12 h-12 bg-gray-300 text-gray-600 rounded-full flex items-center justify-center text-xl font-bold mr-4">
+                    3
+                  </div>
+                  <span className="text-gray-500 font-medium">View Results</span>
+                </div>
               </div>
             </div>
           </div>
